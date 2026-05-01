@@ -4,7 +4,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 EXPECTED_COLOR_COUNT=22
-EXPECTED_FONT="SpaceMonoNFM 24"
+EXPECTED_FONT="JetBrainsMonoNFM 24"
 
 require_command() {
   if ! command -v "$1" >/dev/null 2>&1; then

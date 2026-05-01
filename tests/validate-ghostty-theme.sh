@@ -170,7 +170,7 @@ validate_palette light <<'PALETTE'
 PALETTE
 validate_special_colors light <<'COLORS'
 background|#FFFFFF
-font-family|"SpaceMono Nerd Font Mono"
+font-family|"JetBrainsMono Nerd Font Mono"
 font-size|24
 foreground|#111111
 cursor-color|#FF4719
@@ -200,7 +200,7 @@ validate_palette dark <<'PALETTE'
 PALETTE
 validate_special_colors dark <<'COLORS'
 background|#090807
-font-family|"SpaceMono Nerd Font Mono"
+font-family|"JetBrainsMono Nerd Font Mono"
 font-size|24
 foreground|#E5DDD0
 cursor-color|#FF4719

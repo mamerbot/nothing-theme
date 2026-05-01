@@ -8,12 +8,14 @@ Two variants: `nothing-light` (default) and `nothing-dark`.
 ## Design principles
 
 - Monochromatic, typographically driven — inspired by the Nothing design system: industrial precision, warm neutrals, color as an event not a default
-- One molten accent (`#FF4719`) shared across both modes — used for the cursor and the active directory indicator in the prompt. Everything else is warm neutrals
+- One molten accent (`#FF4719`) shared across both modes — used for the active window/pane indicator and cursor. Everything else is warm neutrals. In tmux, `#FF4719` fires only on `window-status-current` and `pane-active-border` — two locations per screen, never more
 - Dark mode: OLED-ready near-black base (`#090807`) with warm parchment foreground (`#E5DDD0`)
-- Light mode: pure white canvas (`#FFFFFF`) with all ANSI colors darkened for WCAG AA contrast (≥4.5:1)
+- Light mode: pure white canvas (`#FFFFFF`) with all ANSI colors darkened for WCAG AA contrast (≥4.5:1). Light mode has no surface elevation (`surface = bg = #FFFFFF`) — floating windows are distinguished by border alone
 - Normal and bright ANSI pairs are distinct — brights are lighter/more saturated variants, not duplicates
 - Yellow on white is a trap: the light yellow is pulled to `#7A4A00` (readable amber-brown)
-- Typeface: SpaceMono Nerd Font Mono at 24pt — percussive, not fluid
+- Bright White (ANSI slot 15) in light mode is `#6B6560` — a medium warm gray, not white. This is intentional for WCAG compliance but breaks the slot's "maximum brightness" convention. Tools that hardcode slot 15 as high-contrast white will render muted gray instead
+- `disabled` and `muted` share the same hex in both modes (`#5A5248` dark, `#6B6560` light). The semantic distinction is naming-only. Dark muted on dark bg (~3.0:1 contrast) intentionally falls below WCAG AA — comments and line numbers are meant to recede
+- Typeface: JetBrainsMono Nerd Font Mono at 24pt
 
 ---
 
@@ -125,7 +127,7 @@ Two variants: `nothing-light` (default) and `nothing-dark`.
 | `bg`       | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | Editor background                           |
 | `surface`  | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | Floating windows (no lift in light mode)    |
 | `raised`   | `#E8E4DF` | ![#E8E4DF](https://img.shields.io/badge/%23E8E4DF-E8E4DF?style=flat-square) | Cursor line, popups                         |
-| `border`   | `#F0EDE8` | ![#F0EDE8](https://img.shields.io/badge/%23F0EDE8-F0EDE8?style=flat-square) | Subtle borders                              |
+| `border`   | `#E8E4DF` | ![#E8E4DF](https://img.shields.io/badge/%23E8E4DF-E8E4DF?style=flat-square) | Borders — same as `raised`; `#F0EDE8` was invisible on white |
 | `split`    | `#E8E4DF` | ![#E8E4DF](https://img.shields.io/badge/%23E8E4DF-E8E4DF?style=flat-square) | Visual selection, pane dividers             |
 | `disabled` | `#6B6560` | ![#6B6560](https://img.shields.io/badge/%236B6560-6B6560?style=flat-square) | Comments (italic), disabled elements        |
 | `muted`    | `#6B6560` | ![#6B6560](https://img.shields.io/badge/%236B6560-6B6560?style=flat-square) | Operators, punctuation, line numbers        |
@@ -143,7 +145,9 @@ Two variants: `nothing-light` (default) and `nothing-dark`.
 
 ## Syntax highlighting mapping
 
-These rules apply to both variants (swap colors for light vs dark per the tables above).
+These rules apply to both variants (swap colors for light vs dark per the tables above). Classic vim highlight groups and Neovim treesitter `@` semantic groups are both defined.
+
+### Classic vim groups
 
 | Syntax role              | Color role  | Notes                              |
 |--------------------------|-------------|------------------------------------|
@@ -169,6 +173,48 @@ These rules apply to both variants (swap colors for light vs dark per the tables
 | Diff removed             | `red`       |                                    |
 | Diff changed             | `yellow`    |                                    |
 | Error / Invalid          | `red`       | Bold                               |
+
+### Neovim treesitter `@` semantic groups
+
+| Treesitter group           | Color role  | Notes                              |
+|----------------------------|-------------|------------------------------------|
+| `@variable`                | `fg`        |                                    |
+| `@variable.builtin`        | `red`       | `self`, `this`, etc.               |
+| `@variable.parameter`      | `fg`        |                                    |
+| `@variable.member`         | `blue`      | Struct/object fields               |
+| `@string`                  | `green`     |                                    |
+| `@string.escape`           | `cyan`      |                                    |
+| `@string.special`          | `cyan`      |                                    |
+| `@number` / `@number.float`| `yellow`    |                                    |
+| `@boolean`                 | `red`       |                                    |
+| `@constant`                | `magenta`   |                                    |
+| `@constant.builtin`        | `red`       | `nil`, `true`, `false`             |
+| `@constant.macro`          | `magenta`   |                                    |
+| `@keyword`                 | `red`       |                                    |
+| `@keyword.return`          | `red`       |                                    |
+| `@keyword.function`        | `red`       |                                    |
+| `@keyword.operator`        | `muted`     |                                    |
+| `@keyword.import`          | `cyan`      |                                    |
+| `@function` / `@function.call` | `blue`  |                                    |
+| `@function.builtin`        | `blue`      |                                    |
+| `@function.method` / `@function.method.call` | `blue` |               |
+| `@constructor`             | `blue`      |                                    |
+| `@type` / `@type.builtin`  | `magenta`   |                                    |
+| `@type.definition`         | `magenta`   |                                    |
+| `@attribute`               | `magenta`   | Decorators, annotations            |
+| `@property`                | `blue`      |                                    |
+| `@operator`                | `muted`     |                                    |
+| `@punctuation.delimiter`   | `muted`     |                                    |
+| `@punctuation.bracket`     | `muted`     |                                    |
+| `@comment`                 | `disabled`  | Italic                             |
+| `@tag`                     | `red`       | HTML/JSX tag names                 |
+| `@tag.attribute`           | `magenta`   |                                    |
+| `@tag.delimiter`           | `muted`     |                                    |
+| `@module` / `@namespace`   | `cyan`      |                                    |
+| `@regex`                   | `red`       |                                    |
+| `@diff.plus`               | `green`     |                                    |
+| `@diff.minus`              | `red`       |                                    |
+| `@diff.delta`              | `yellow`    |                                    |
 
 ---
 
@@ -196,7 +242,7 @@ Both Nothing variants are available for Ghostty:
 | `nothing-light` | `home/.config/ghostty/themes/nothing-light` |
 | `nothing-dark` | `home/.config/ghostty/themes/nothing-dark` |
 
-Run `make install-ghostty` to install both themes into `~/.config/ghostty/themes/`. Use `PREFIX=/path/to/home` to install into another home-style directory. Both themes set `font-family = "SpaceMono Nerd Font Mono"` and `font-size = 24`. Install the font with `brew install --cask font-space-mono-nerd-font`.
+Run `make install-ghostty` to install both themes into `~/.config/ghostty/themes/`. Use `PREFIX=/path/to/home` to install into another home-style directory. Both themes set `font-family = "JetBrainsMono Nerd Font Mono"` and `font-size = 24`. Install the font with `brew install --cask font-jetbrains-mono-nerd-font`.
 
 Use a single variant:
 
