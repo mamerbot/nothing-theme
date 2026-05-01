@@ -74,37 +74,39 @@ iterm2_profile_background_hex() {
   printf "#%s%s%s" "$(component_to_byte "$red")" "$(component_to_byte "$green")" "$(component_to_byte "$blue")"
 }
 
-assert_black_background() {
+EXPECTED_DARK_BG="#090807"
+
+assert_dark_background() {
   local actual="$1"
   local context="$2"
 
-  if [[ "$actual" != "#000000" ]]; then
-    echo "${context}: dark terminal background must be #000000, got ${actual}" >&2
+  if [[ "$actual" != "$EXPECTED_DARK_BG" ]]; then
+    echo "${context}: dark terminal background must be ${EXPECTED_DARK_BG}, got ${actual}" >&2
     exit 1
   fi
 }
 
-assert_black_background \
+assert_dark_background \
   "$(iterm2_background_hex "${ROOT_DIR}/home/.config/iterm2/colors/nothing-dark.itermcolors")" \
   "nothing-dark.itermcolors"
 
-assert_black_background \
+assert_dark_background \
   "$(iterm2_profile_background_hex "${ROOT_DIR}/home/.config/iterm2/DynamicProfiles/nothing-dark.json")" \
   "nothing-dark.json"
 
-assert_black_background \
+assert_dark_background \
   "$(ghostty_background_hex "${ROOT_DIR}/home/.config/ghostty/themes/nothing-dark")" \
   "ghostty nothing-dark"
 
-assert_black_background \
+assert_dark_background \
   "$(tmux_style_background_hex "${ROOT_DIR}/home/.config/tmux/themes/nothing-dark.conf" "status-style")" \
   "tmux nothing-dark status-style"
 
-assert_black_background \
+assert_dark_background \
   "$(tmux_style_background_hex "${ROOT_DIR}/home/.config/tmux/themes/nothing-dark.conf" "popup-style")" \
   "tmux nothing-dark popup-style"
 
-assert_black_background \
+assert_dark_background \
   "$(nvim_palette_background_hex "${ROOT_DIR}/home/.config/nvim/colors/nothing-dark.lua")" \
   "nvim nothing-dark Normal"
 

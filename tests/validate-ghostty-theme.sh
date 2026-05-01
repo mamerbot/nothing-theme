@@ -151,62 +151,62 @@ validate_special_colors() {
 
 validate_variant light
 validate_palette light <<'PALETTE'
-0|#1A1A1A
-1|#D71921
-2|#4A9E5C
-3|#D4A843
-4|#007AFF
-5|#7A4FA8
-6|#2A8FAF
-7|#CCCCCC
-8|#666666
-9|#D71921
-10|#4A9E5C
-11|#D4A843
-12|#007AFF
-13|#7A4FA8
-14|#2A8FAF
-15|#000000
+0|#111111
+1|#C0000A
+2|#1E6B3C
+3|#7A4A00
+4|#1050A0
+5|#5A2D9A
+6|#006E6E
+7|#3A3530
+8|#555050
+9|#E8001A
+10|#2A8A50
+11|#9A5E00
+12|#1A6ACC
+13|#7A40C0
+14|#008A8A
+15|#6B6560
 PALETTE
 validate_special_colors light <<'COLORS'
 background|#FFFFFF
-font-family|"JetBrainsMono Nerd Font Mono"
-font-size|16
-foreground|#1A1A1A
-cursor-color|#000000
+font-family|"SpaceMono Nerd Font Mono"
+font-size|24
+foreground|#111111
+cursor-color|#FF4719
 cursor-text|#FFFFFF
-selection-background|#CCCCCC
-selection-foreground|#1A1A1A
+selection-background|#E8E4DF
+selection-foreground|#111111
 COLORS
 
 validate_variant dark
 validate_palette dark <<'PALETTE'
-0|#000000
+0|#181614
 1|#D71921
-2|#4A9E5C
-3|#D4A843
-4|#5B9BF6
-5|#9B6FBF
-6|#4A9EC4
-7|#999999
-8|#333333
-9|#D71921
-10|#4A9E5C
-11|#D4A843
-12|#5B9BF6
-13|#9B6FBF
-14|#4A9EC4
+2|#5AB87A
+3|#E8A030
+4|#4A8FD9
+5|#9575CD
+6|#26C6C6
+7|#E5DDD0
+8|#3A3632
+9|#FF3B3B
+10|#7DD89A
+11|#FFB84D
+12|#70ADEC
+13|#B39DDB
+14|#4DD9D9
 15|#FFFFFF
 PALETTE
 validate_special_colors dark <<'COLORS'
-background|#000000
-font-family|"JetBrainsMono Nerd Font Mono"
-font-size|16
-foreground|#E8E8E8
-cursor-color|#FFFFFF
-cursor-text|#000000
-selection-background|#333333
-selection-foreground|#E8E8E8
+background|#090807
+font-family|"SpaceMono Nerd Font Mono"
+font-size|24
+foreground|#E5DDD0
+cursor-color|#FF4719
+cursor-text|#090807
+selection-background|#1D1A17
+selection-foreground|#E5DDD0
 COLORS
 
 echo "Ghostty theme validation passed"

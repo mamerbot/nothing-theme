@@ -2,122 +2,122 @@ colourful: true
 
 filekinds:
   normal:
-    foreground: "#1A1A1A"
+    foreground: "#111111"
   directory:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
     is_bold: true
   symlink:
-    foreground: "#2A8FAF"
+    foreground: "#006E6E"
   pipe:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   socket:
-    foreground: "#7A4FA8"
+    foreground: "#5A2D9A"
   block_device:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   char_device:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   executable:
-    foreground: "#4A9E5C"
+    foreground: "#1E6B3C"
     is_bold: true
   mount_point:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
     is_bold: true
   special:
-    foreground: "#7A4FA8"
+    foreground: "#5A2D9A"
   broken_symlink:
-    foreground: "#D71921"
+    foreground: "#C0000A"
     is_bold: true
 
 perms:
   user_read:
-    foreground: "#4A9E5C"
+    foreground: "#1E6B3C"
   user_write:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   user_execute_file:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   user_execute_other:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   group_read:
-    foreground: "#4A9E5C"
+    foreground: "#1E6B3C"
   group_write:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   group_execute:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   other_read:
-    foreground: "#999999"
+    foreground: "#6B6560"
   other_write:
-    foreground: "#D71921"
+    foreground: "#C0000A"
   other_execute:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   special_user_file:
-    foreground: "#7A4FA8"
+    foreground: "#5A2D9A"
   special_other:
-    foreground: "#7A4FA8"
+    foreground: "#5A2D9A"
   attribute:
-    foreground: "#666666"
+    foreground: "#6B6560"
 
 size:
   major:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   minor:
-    foreground: "#666666"
+    foreground: "#6B6560"
   number_byte:
-    foreground: "#1A1A1A"
+    foreground: "#111111"
   number_kilo:
-    foreground: "#2A8FAF"
+    foreground: "#006E6E"
   number_mega:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   number_giga:
-    foreground: "#7A4FA8"
+    foreground: "#5A2D9A"
   number_huge:
-    foreground: "#D71921"
+    foreground: "#C0000A"
     is_bold: true
   unit_byte:
-    foreground: "#666666"
+    foreground: "#6B6560"
   unit_kilo:
-    foreground: "#666666"
+    foreground: "#6B6560"
   unit_mega:
-    foreground: "#666666"
+    foreground: "#6B6560"
   unit_giga:
-    foreground: "#666666"
+    foreground: "#6B6560"
   unit_huge:
-    foreground: "#D71921"
+    foreground: "#C0000A"
 
 users:
   user_you:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   user_root:
-    foreground: "#D71921"
+    foreground: "#C0000A"
     is_bold: true
   user_other:
-    foreground: "#666666"
+    foreground: "#6B6560"
   group_yours:
-    foreground: "#2A8FAF"
+    foreground: "#006E6E"
   group_other:
-    foreground: "#666666"
+    foreground: "#6B6560"
   group_root:
-    foreground: "#D71921"
+    foreground: "#C0000A"
     is_bold: true
 
 links:
   normal:
-    foreground: "#2A8FAF"
+    foreground: "#006E6E"
   multi_link_file:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
 
 git:
   new:
-    foreground: "#4A9E5C"
+    foreground: "#1E6B3C"
   modified:
-    foreground: "#D4A843"
+    foreground: "#7A4A00"
   deleted:
-    foreground: "#D71921"
+    foreground: "#C0000A"
   renamed:
-    foreground: "#007AFF"
+    foreground: "#1050A0"
   typechange:
-    foreground: "#7A4FA8"
+    foreground: "#5A2D9A"
   ignored:
-    foreground: "#999999"
+    foreground: "#6B6560"
   conflicted:
-    foreground: "#D71921"
+    foreground: "#C0000A"
     is_bold: true

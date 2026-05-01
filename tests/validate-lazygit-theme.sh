@@ -35,8 +35,8 @@ for variant in light dark; do
   done
 done
 
-assert_contains "${ROOT_DIR}/home/.config/lazygit/themes/nothing-light.yml" '"#007AFF"' "light active border"
-assert_contains "${ROOT_DIR}/home/.config/lazygit/themes/nothing-dark.yml" '"#1A1A1A"' "dark selected line color"
-assert_contains "${ROOT_DIR}/home/.config/lazygit/themes/nothing-dark.yml" '"#5B9BF6"' "dark active border"
+assert_contains "${ROOT_DIR}/home/.config/lazygit/themes/nothing-light.yml" '"#FF4719"' "light active border"
+assert_contains "${ROOT_DIR}/home/.config/lazygit/themes/nothing-dark.yml" '"#181614"' "dark selected line color"
+assert_contains "${ROOT_DIR}/home/.config/lazygit/themes/nothing-dark.yml" '"#FF4719"' "dark active border"
 
 echo "lazygit theme validation passed"

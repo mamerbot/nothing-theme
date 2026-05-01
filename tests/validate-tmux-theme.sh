@@ -19,7 +19,7 @@ assert_palette_only() {
   local file="$1"
   local allowed_pattern
 
-  allowed_pattern='^(#000000|#FFFFFF|#F0F0F0|#E8E8E8|#CCCCCC|#999999|#666666|#1A1A1A|#111111|#222222|#333333|#D71921|#4A9E5C|#D4A843|#007AFF|#5B9BF6|#7A4FA8|#9B6FBF|#2A8FAF|#4A9EC4)$'
+  allowed_pattern='^(#090807|#E5DDD0|#FF4719|#181614|#5A5248|#E8A030|#FFFFFF|#D71921|#3A3632|#111111|#E8E4DF|#6B6560|#7A4A00|#C0000A)$'
 
   while IFS= read -r color; do
     if ! [[ "$color" =~ $allowed_pattern ]]; then
@@ -56,9 +56,9 @@ for variant in light dark; do
   assert_palette_only "$file"
 done
 
-assert_contains "${ROOT_DIR}/home/.config/tmux/themes/nothing-light.conf" 'status-style "fg=#1A1A1A,bg=#FFFFFF"' "light status background"
-assert_contains "${ROOT_DIR}/home/.config/tmux/themes/nothing-dark.conf" 'status-style "fg=#E8E8E8,bg=#000000"' "dark status background"
-assert_contains "${ROOT_DIR}/home/.config/tmux/themes/nothing-dark.conf" 'popup-style "fg=#E8E8E8,bg=#000000"' "dark popup background"
+assert_contains "${ROOT_DIR}/home/.config/tmux/themes/nothing-light.conf" 'status-style "fg=#111111,bg=#FFFFFF"' "light status background"
+assert_contains "${ROOT_DIR}/home/.config/tmux/themes/nothing-dark.conf" 'status-style "fg=#E5DDD0,bg=#090807"' "dark status background"
+assert_contains "${ROOT_DIR}/home/.config/tmux/themes/nothing-dark.conf" 'popup-style "fg=#E5DDD0,bg=#090807"' "dark popup background"
 
 if command -v tmux >/dev/null 2>&1; then
   tmux_tmpdir="${TMPDIR:-/tmp}/nothing-theme-tmux-$$"

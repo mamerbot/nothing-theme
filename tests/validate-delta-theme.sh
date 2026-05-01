@@ -38,6 +38,6 @@ done
 
 assert_config "${ROOT_DIR}/home/.config/delta/themes/nothing-light.gitconfig" "delta.nothing-light.light" "true"
 assert_config "${ROOT_DIR}/home/.config/delta/themes/nothing-dark.gitconfig" "delta.nothing-dark.dark" "true"
-assert_config "${ROOT_DIR}/home/.config/delta/themes/nothing-dark.gitconfig" "delta.nothing-dark.zero-style" 'syntax #000000 #E8E8E8'
+assert_config "${ROOT_DIR}/home/.config/delta/themes/nothing-dark.gitconfig" "delta.nothing-dark.zero-style" 'syntax #090807 #E5DDD0'
 
 echo "delta theme validation passed"

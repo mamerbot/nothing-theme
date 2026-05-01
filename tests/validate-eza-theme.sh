@@ -34,8 +34,8 @@ for variant in light dark; do
   done
 done
 
-assert_contains "${ROOT_DIR}/home/.config/eza/themes/nothing-light.yml" '"#007AFF"' "light blue"
-assert_contains "${ROOT_DIR}/home/.config/eza/themes/nothing-dark.yml" '"#5B9BF6"' "dark blue"
-assert_contains "${ROOT_DIR}/home/.config/eza/themes/nothing-dark.yml" '"#4A9EC4"' "dark cyan"
+assert_contains "${ROOT_DIR}/home/.config/eza/themes/nothing-light.yml" '"#1050A0"' "light blue"
+assert_contains "${ROOT_DIR}/home/.config/eza/themes/nothing-dark.yml" '"#4A8FD9"' "dark blue"
+assert_contains "${ROOT_DIR}/home/.config/eza/themes/nothing-dark.yml" '"#26C6C6"' "dark cyan"
 
 echo "eza theme validation passed"

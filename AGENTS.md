@@ -7,134 +7,137 @@ Two variants: `nothing-light` (default) and `nothing-dark`.
 
 ## Design principles
 
-- OLED-first monochrome: 8-step grayscale ladder as the structural backbone
-- Four invariant semantic colors: red, green, yellow, blue
-- Magenta and cyan are synthesized (the Nothing system has no official values) — desaturated hybrids that honor the monochrome spirit
-- Blue shifts between variants: `#007AFF` (iOS-style, light) / `#5B9BF6` (softened for dark OLED)
-- Red and green are identical across both variants (invariant)
-- Yellow/amber is identical across both variants (invariant)
+- Monochromatic, typographically driven — inspired by the Nothing design system: industrial precision, warm neutrals, color as an event not a default
+- One molten accent (`#FF4719`) shared across both modes — used for the cursor and the active directory indicator in the prompt. Everything else is warm neutrals
+- Dark mode: OLED-ready near-black base (`#090807`) with warm parchment foreground (`#E5DDD0`)
+- Light mode: pure white canvas (`#FFFFFF`) with all ANSI colors darkened for WCAG AA contrast (≥4.5:1)
+- Normal and bright ANSI pairs are distinct — brights are lighter/more saturated variants, not duplicates
+- Yellow on white is a trap: the light yellow is pulled to `#7A4A00` (readable amber-brown)
+- Typeface: SpaceMono Nerd Font Mono at 24pt — percussive, not fluid
 
 ---
 
-## Nothing Light
+## Nothing Dark — The Crucible
 
-### Grayscale ladder
-
-| Role       | Hex       | Swatch | RGB             | Usage                                      |
-|------------|-----------|--------|-----------------|---------------------------------------------|
-| `bg`       | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | 255, 255, 255   | Terminal background, editor background      |
-| `surface`  | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | 255, 255, 255   | Same as bg (light has no surface lift)      |
-| `raised`   | `#F0F0F0` | ![#F0F0F0](https://img.shields.io/badge/%23F0F0F0-F0F0F0?style=flat-square) | 240, 240, 240   | Float/popup backgrounds, cursor line        |
-| `border`   | `#E8E8E8` | ![#E8E8E8](https://img.shields.io/badge/%23E8E8E8-E8E8E8?style=flat-square) | 232, 232, 232   | Subtle borders, invisibles                  |
-| `split`    | `#CCCCCC` | ![#CCCCCC](https://img.shields.io/badge/%23CCCCCC-CCCCCC?style=flat-square) | 204, 204, 204   | Selection background, split lines           |
-| `disabled` | `#999999` | ![#999999](https://img.shields.io/badge/%23999999-999999?style=flat-square) | 153, 153, 153   | Comments (italic), disabled UI elements     |
-| `muted`    | `#666666` | ![#666666](https://img.shields.io/badge/%23666666-666666?style=flat-square) | 102, 102, 102   | Operators, punctuation, line numbers        |
-| `fg`       | `#1A1A1A` | ![#1A1A1A](https://img.shields.io/badge/%231A1A1A-1A1A1A?style=flat-square) | 26, 26, 26      | Primary text, variables                     |
-| `bright`   | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) | 0, 0, 0         | Bold text, headings, maximum contrast       |
-
-### Semantic colors
-
-| Role      | Hex       | Swatch | RGB             | Usage                                        |
-|-----------|-----------|--------|-----------------|-----------------------------------------------|
-| `red`     | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | 215, 25, 33     | Keywords, errors, deletions, boolean/null     |
-| `green`   | `#4A9E5C` | ![#4A9E5C](https://img.shields.io/badge/%234A9E5C-4A9E5C?style=flat-square) | 74, 158, 92     | Strings, additions, success                   |
-| `yellow`  | `#D4A843` | ![#D4A843](https://img.shields.io/badge/%23D4A843-D4A843?style=flat-square) | 212, 168, 67    | Numbers, warnings, modified, dates            |
-| `blue`    | `#007AFF` | ![#007AFF](https://img.shields.io/badge/%23007AFF-007AFF?style=flat-square) | 0, 122, 255     | Functions, properties, links, directories     |
-| `magenta` | `#7A4FA8` | ![#7A4FA8](https://img.shields.io/badge/%237A4FA8-7A4FA8?style=flat-square) | 122, 79, 168    | Types, classes, constants, decorators         |
-| `cyan`    | `#2A8FAF` | ![#2A8FAF](https://img.shields.io/badge/%232A8FAF-2A8FAF?style=flat-square) | 42, 143, 175    | Imports, namespaces, string escapes           |
-
-### ANSI terminal palette
-
-| Slot | Name           | Hex       | Swatch | RGB             |
-|------|----------------|-----------|--------|-----------------|
-| 0    | Black          | `#1A1A1A` | ![#1A1A1A](https://img.shields.io/badge/%231A1A1A-1A1A1A?style=flat-square) | 26, 26, 26      |
-| 1    | Red            | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | 215, 25, 33     |
-| 2    | Green          | `#4A9E5C` | ![#4A9E5C](https://img.shields.io/badge/%234A9E5C-4A9E5C?style=flat-square) | 74, 158, 92     |
-| 3    | Yellow         | `#D4A843` | ![#D4A843](https://img.shields.io/badge/%23D4A843-D4A843?style=flat-square) | 212, 168, 67    |
-| 4    | Blue           | `#007AFF` | ![#007AFF](https://img.shields.io/badge/%23007AFF-007AFF?style=flat-square) | 0, 122, 255     |
-| 5    | Magenta        | `#7A4FA8` | ![#7A4FA8](https://img.shields.io/badge/%237A4FA8-7A4FA8?style=flat-square) | 122, 79, 168    |
-| 6    | Cyan           | `#2A8FAF` | ![#2A8FAF](https://img.shields.io/badge/%232A8FAF-2A8FAF?style=flat-square) | 42, 143, 175    |
-| 7    | White          | `#CCCCCC` | ![#CCCCCC](https://img.shields.io/badge/%23CCCCCC-CCCCCC?style=flat-square) | 204, 204, 204   |
-| 8    | Bright Black   | `#666666` | ![#666666](https://img.shields.io/badge/%23666666-666666?style=flat-square) | 102, 102, 102   |
-| 9    | Bright Red     | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | 215, 25, 33     |
-| 10   | Bright Green   | `#4A9E5C` | ![#4A9E5C](https://img.shields.io/badge/%234A9E5C-4A9E5C?style=flat-square) | 74, 158, 92     |
-| 11   | Bright Yellow  | `#D4A843` | ![#D4A843](https://img.shields.io/badge/%23D4A843-D4A843?style=flat-square) | 212, 168, 67    |
-| 12   | Bright Blue    | `#007AFF` | ![#007AFF](https://img.shields.io/badge/%23007AFF-007AFF?style=flat-square) | 0, 122, 255     |
-| 13   | Bright Magenta | `#7A4FA8` | ![#7A4FA8](https://img.shields.io/badge/%237A4FA8-7A4FA8?style=flat-square) | 122, 79, 168    |
-| 14   | Bright Cyan    | `#2A8FAF` | ![#2A8FAF](https://img.shields.io/badge/%232A8FAF-2A8FAF?style=flat-square) | 42, 143, 175    |
-| 15   | Bright White   | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) | 0, 0, 0         |
+> OLED black base. Warm parchment foreground. Color is an interrupt.
 
 ### Terminal special colors
 
-| Key                  | Hex       | Swatch |
-|----------------------|-----------|--------|
-| Background           | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) |
-| Foreground           | `#1A1A1A` | ![#1A1A1A](https://img.shields.io/badge/%231A1A1A-1A1A1A?style=flat-square) |
-| Cursor               | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) |
-| Cursor text          | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) |
-| Selection background | `#CCCCCC` | ![#CCCCCC](https://img.shields.io/badge/%23CCCCCC-CCCCCC?style=flat-square) |
-| Selection text       | `#1A1A1A` | ![#1A1A1A](https://img.shields.io/badge/%231A1A1A-1A1A1A?style=flat-square) |
-
----
-
-## Nothing Dark
-
-### Grayscale ladder
-
-| Role       | Hex       | Swatch | RGB             | Usage                                      |
-|------------|-----------|--------|-----------------|---------------------------------------------|
-| `bg`       | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) | 0, 0, 0         | OLED terminal background, editor background |
-| `surface`  | `#111111` | ![#111111](https://img.shields.io/badge/%23111111-111111?style=flat-square) | 17, 17, 17      | Editor surface (Normal bg)                  |
-| `raised`   | `#1A1A1A` | ![#1A1A1A](https://img.shields.io/badge/%231A1A1A-1A1A1A?style=flat-square) | 26, 26, 26      | Float/popup backgrounds, cursor line        |
-| `border`   | `#222222` | ![#222222](https://img.shields.io/badge/%23222222-222222?style=flat-square) | 34, 34, 34      | Subtle borders, invisibles                  |
-| `split`    | `#333333` | ![#333333](https://img.shields.io/badge/%23333333-333333?style=flat-square) | 51, 51, 51      | Selection background, split lines           |
-| `disabled` | `#666666` | ![#666666](https://img.shields.io/badge/%23666666-666666?style=flat-square) | 102, 102, 102   | Comments (italic), disabled UI elements     |
-| `muted`    | `#999999` | ![#999999](https://img.shields.io/badge/%23999999-999999?style=flat-square) | 153, 153, 153   | Operators, punctuation, line numbers        |
-| `fg`       | `#E8E8E8` | ![#E8E8E8](https://img.shields.io/badge/%23E8E8E8-E8E8E8?style=flat-square) | 232, 232, 232   | Primary text, variables                     |
-| `bright`   | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | 255, 255, 255   | Bold text, headings, maximum contrast       |
-
-### Semantic colors
-
-| Role      | Hex       | Swatch | RGB             | Usage                                        |
-|-----------|-----------|--------|-----------------|-----------------------------------------------|
-| `red`     | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | 215, 25, 33     | Keywords, errors, deletions, boolean/null     |
-| `green`   | `#4A9E5C` | ![#4A9E5C](https://img.shields.io/badge/%234A9E5C-4A9E5C?style=flat-square) | 74, 158, 92     | Strings, additions, success                   |
-| `yellow`  | `#D4A843` | ![#D4A843](https://img.shields.io/badge/%23D4A843-D4A843?style=flat-square) | 212, 168, 67    | Numbers, warnings, modified, dates            |
-| `blue`    | `#5B9BF6` | ![#5B9BF6](https://img.shields.io/badge/%235B9BF6-5B9BF6?style=flat-square) | 91, 155, 246    | Functions, properties, links, directories     |
-| `magenta` | `#9B6FBF` | ![#9B6FBF](https://img.shields.io/badge/%239B6FBF-9B6FBF?style=flat-square) | 155, 111, 191   | Types, classes, constants, decorators         |
-| `cyan`    | `#4A9EC4` | ![#4A9EC4](https://img.shields.io/badge/%234A9EC4-4A9EC4?style=flat-square) | 74, 158, 196    | Imports, namespaces, string escapes           |
+| Role                 | Hex       | Swatch | Notes                              |
+|----------------------|-----------|--------|------------------------------------|
+| Background           | `#090807` | ![#090807](https://img.shields.io/badge/%23090807-090807?style=flat-square) | Near-OLED black, warm undertone    |
+| Foreground           | `#E5DDD0` | ![#E5DDD0](https://img.shields.io/badge/%23E5DDD0-E5DDD0?style=flat-square) | Warm parchment white               |
+| Cursor               | `#FF4719` | ![#FF4719](https://img.shields.io/badge/%23FF4719-FF4719?style=flat-square) | Molten orange-red — the accent     |
+| Cursor text          | `#090807` | ![#090807](https://img.shields.io/badge/%23090807-090807?style=flat-square) |                                    |
+| Selection background | `#1D1A17` | ![#1D1A17](https://img.shields.io/badge/%231D1A17-1D1A17?style=flat-square) | Slightly lifted from background    |
+| Selection text       | `#E5DDD0` | ![#E5DDD0](https://img.shields.io/badge/%23E5DDD0-E5DDD0?style=flat-square) |                                    |
+| Dim / Metadata       | `#5A5248` | ![#5A5248](https://img.shields.io/badge/%235A5248-5A5248?style=flat-square) | ~50% — prompt decorators, labels   |
+| Bold                 | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) |                                    |
+| Link                 | `#4A8FD9` | ![#4A8FD9](https://img.shields.io/badge/%234A8FD9-4A8FD9?style=flat-square) |                                    |
 
 ### ANSI terminal palette
 
 | Slot | Name           | Hex       | Swatch | RGB             |
 |------|----------------|-----------|--------|-----------------|
-| 0    | Black          | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) | 0, 0, 0         |
+| 0    | Black          | `#181614` | ![#181614](https://img.shields.io/badge/%23181614-181614?style=flat-square) | 24, 22, 20      |
 | 1    | Red            | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | 215, 25, 33     |
-| 2    | Green          | `#4A9E5C` | ![#4A9E5C](https://img.shields.io/badge/%234A9E5C-4A9E5C?style=flat-square) | 74, 158, 92     |
-| 3    | Yellow         | `#D4A843` | ![#D4A843](https://img.shields.io/badge/%23D4A843-D4A843?style=flat-square) | 212, 168, 67    |
-| 4    | Blue           | `#5B9BF6` | ![#5B9BF6](https://img.shields.io/badge/%235B9BF6-5B9BF6?style=flat-square) | 91, 155, 246    |
-| 5    | Magenta        | `#9B6FBF` | ![#9B6FBF](https://img.shields.io/badge/%239B6FBF-9B6FBF?style=flat-square) | 155, 111, 191   |
-| 6    | Cyan           | `#4A9EC4` | ![#4A9EC4](https://img.shields.io/badge/%234A9EC4-4A9EC4?style=flat-square) | 74, 158, 196    |
-| 7    | White          | `#999999` | ![#999999](https://img.shields.io/badge/%23999999-999999?style=flat-square) | 153, 153, 153   |
-| 8    | Bright Black   | `#333333` | ![#333333](https://img.shields.io/badge/%23333333-333333?style=flat-square) | 51, 51, 51      |
-| 9    | Bright Red     | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | 215, 25, 33     |
-| 10   | Bright Green   | `#4A9E5C` | ![#4A9E5C](https://img.shields.io/badge/%234A9E5C-4A9E5C?style=flat-square) | 74, 158, 92     |
-| 11   | Bright Yellow  | `#D4A843` | ![#D4A843](https://img.shields.io/badge/%23D4A843-D4A843?style=flat-square) | 212, 168, 67    |
-| 12   | Bright Blue    | `#5B9BF6` | ![#5B9BF6](https://img.shields.io/badge/%235B9BF6-5B9BF6?style=flat-square) | 91, 155, 246    |
-| 13   | Bright Magenta | `#9B6FBF` | ![#9B6FBF](https://img.shields.io/badge/%239B6FBF-9B6FBF?style=flat-square) | 155, 111, 191   |
-| 14   | Bright Cyan    | `#4A9EC4` | ![#4A9EC4](https://img.shields.io/badge/%234A9EC4-4A9EC4?style=flat-square) | 74, 158, 196    |
+| 2    | Green          | `#5AB87A` | ![#5AB87A](https://img.shields.io/badge/%235AB87A-5AB87A?style=flat-square) | 90, 184, 122    |
+| 3    | Yellow         | `#E8A030` | ![#E8A030](https://img.shields.io/badge/%23E8A030-E8A030?style=flat-square) | 232, 160, 48    |
+| 4    | Blue           | `#4A8FD9` | ![#4A8FD9](https://img.shields.io/badge/%234A8FD9-4A8FD9?style=flat-square) | 74, 143, 217    |
+| 5    | Magenta        | `#9575CD` | ![#9575CD](https://img.shields.io/badge/%239575CD-9575CD?style=flat-square) | 149, 117, 205   |
+| 6    | Cyan           | `#26C6C6` | ![#26C6C6](https://img.shields.io/badge/%2326C6C6-26C6C6?style=flat-square) | 38, 198, 198    |
+| 7    | White          | `#E5DDD0` | ![#E5DDD0](https://img.shields.io/badge/%23E5DDD0-E5DDD0?style=flat-square) | 229, 221, 208   |
+| 8    | Bright Black   | `#3A3632` | ![#3A3632](https://img.shields.io/badge/%233A3632-3A3632?style=flat-square) | 58, 54, 50      |
+| 9    | Bright Red     | `#FF3B3B` | ![#FF3B3B](https://img.shields.io/badge/%23FF3B3B-FF3B3B?style=flat-square) | 255, 59, 59     |
+| 10   | Bright Green   | `#7DD89A` | ![#7DD89A](https://img.shields.io/badge/%237DD89A-7DD89A?style=flat-square) | 125, 216, 154   |
+| 11   | Bright Yellow  | `#FFB84D` | ![#FFB84D](https://img.shields.io/badge/%23FFB84D-FFB84D?style=flat-square) | 255, 184, 77    |
+| 12   | Bright Blue    | `#70ADEC` | ![#70ADEC](https://img.shields.io/badge/%2370ADEC-70ADEC?style=flat-square) | 112, 173, 236   |
+| 13   | Bright Magenta | `#B39DDB` | ![#B39DDB](https://img.shields.io/badge/%23B39DDB-B39DDB?style=flat-square) | 179, 157, 219   |
+| 14   | Bright Cyan    | `#4DD9D9` | ![#4DD9D9](https://img.shields.io/badge/%234DD9D9-4DD9D9?style=flat-square) | 77, 217, 217    |
 | 15   | Bright White   | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | 255, 255, 255   |
 
+### Neovim semantic color palette
+
+| Role       | Hex       | Swatch | Usage                                      |
+|------------|-----------|--------|--------------------------------------------|
+| `bg`       | `#090807` | ![#090807](https://img.shields.io/badge/%23090807-090807?style=flat-square) | Editor background                           |
+| `surface`  | `#181614` | ![#181614](https://img.shields.io/badge/%23181614-181614?style=flat-square) | Floating windows                            |
+| `raised`   | `#1D1A17` | ![#1D1A17](https://img.shields.io/badge/%231D1A17-1D1A17?style=flat-square) | Cursor line, popups                         |
+| `border`   | `#3A3632` | ![#3A3632](https://img.shields.io/badge/%233A3632-3A3632?style=flat-square) | Borders, split lines                        |
+| `split`    | `#3A3632` | ![#3A3632](https://img.shields.io/badge/%233A3632-3A3632?style=flat-square) | Visual selection, pane dividers             |
+| `disabled` | `#5A5248` | ![#5A5248](https://img.shields.io/badge/%235A5248-5A5248?style=flat-square) | Comments (italic), disabled elements        |
+| `muted`    | `#5A5248` | ![#5A5248](https://img.shields.io/badge/%235A5248-5A5248?style=flat-square) | Operators, punctuation, line numbers        |
+| `fg`       | `#E5DDD0` | ![#E5DDD0](https://img.shields.io/badge/%23E5DDD0-E5DDD0?style=flat-square) | Primary text, variables                     |
+| `bright`   | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | Bold text, headings, maximum contrast       |
+| `accent`   | `#FF4719` | ![#FF4719](https://img.shields.io/badge/%23FF4719-FF4719?style=flat-square) | Cursor, active indicator                    |
+| `red`      | `#D71921` | ![#D71921](https://img.shields.io/badge/%23D71921-D71921?style=flat-square) | Keywords, errors, deletions                 |
+| `green`    | `#5AB87A` | ![#5AB87A](https://img.shields.io/badge/%235AB87A-5AB87A?style=flat-square) | Strings, additions, success                 |
+| `yellow`   | `#E8A030` | ![#E8A030](https://img.shields.io/badge/%23E8A030-E8A030?style=flat-square) | Numbers, warnings, modified                 |
+| `blue`     | `#4A8FD9` | ![#4A8FD9](https://img.shields.io/badge/%234A8FD9-4A8FD9?style=flat-square) | Functions, links, directories               |
+| `magenta`  | `#9575CD` | ![#9575CD](https://img.shields.io/badge/%239575CD-9575CD?style=flat-square) | Types, classes, constants                   |
+| `cyan`     | `#26C6C6` | ![#26C6C6](https://img.shields.io/badge/%2326C6C6-26C6C6?style=flat-square) | Imports, namespaces, string escapes         |
+
+---
+
+## Nothing Light — The Steam
+
+> Pure white canvas. All ANSI colors darkened for WCAG AA contrast (≥4.5:1).
+
 ### Terminal special colors
 
-| Key                  | Hex       | Swatch |
-|----------------------|-----------|--------|
-| Background           | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) |
-| Foreground           | `#E8E8E8` | ![#E8E8E8](https://img.shields.io/badge/%23E8E8E8-E8E8E8?style=flat-square) |
-| Cursor               | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) |
-| Cursor text          | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) |
-| Selection background | `#333333` | ![#333333](https://img.shields.io/badge/%23333333-333333?style=flat-square) |
-| Selection text       | `#E8E8E8` | ![#E8E8E8](https://img.shields.io/badge/%23E8E8E8-E8E8E8?style=flat-square) |
+| Role                 | Hex       | Swatch | Notes                              |
+|----------------------|-----------|--------|------------------------------------|
+| Background           | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | Pure white                         |
+| Foreground           | `#111111` | ![#111111](https://img.shields.io/badge/%23111111-111111?style=flat-square) | Near-black                         |
+| Cursor               | `#FF4719` | ![#FF4719](https://img.shields.io/badge/%23FF4719-FF4719?style=flat-square) | Same molten accent as dark         |
+| Cursor text          | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) |                                    |
+| Selection background | `#E8E4DF` | ![#E8E4DF](https://img.shields.io/badge/%23E8E4DF-E8E4DF?style=flat-square) | Warm light gray                    |
+| Selection text       | `#111111` | ![#111111](https://img.shields.io/badge/%23111111-111111?style=flat-square) |                                    |
+| Dim / Metadata       | `#6B6560` | ![#6B6560](https://img.shields.io/badge/%236B6560-6B6560?style=flat-square) | 4.7:1 on white — WCAG AA           |
+| Bold                 | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) |                                    |
+| Link                 | `#1050A0` | ![#1050A0](https://img.shields.io/badge/%231050A0-1050A0?style=flat-square) |                                    |
+
+### ANSI terminal palette
+
+| Slot | Name           | Hex       | Swatch | RGB             |
+|------|----------------|-----------|--------|-----------------|
+| 0    | Black          | `#111111` | ![#111111](https://img.shields.io/badge/%23111111-111111?style=flat-square) | 17, 17, 17      |
+| 1    | Red            | `#C0000A` | ![#C0000A](https://img.shields.io/badge/%23C0000A-C0000A?style=flat-square) | 192, 0, 10      |
+| 2    | Green          | `#1E6B3C` | ![#1E6B3C](https://img.shields.io/badge/%231E6B3C-1E6B3C?style=flat-square) | 30, 107, 60     |
+| 3    | Yellow         | `#7A4A00` | ![#7A4A00](https://img.shields.io/badge/%237A4A00-7A4A00?style=flat-square) | 122, 74, 0      |
+| 4    | Blue           | `#1050A0` | ![#1050A0](https://img.shields.io/badge/%231050A0-1050A0?style=flat-square) | 16, 80, 160     |
+| 5    | Magenta        | `#5A2D9A` | ![#5A2D9A](https://img.shields.io/badge/%235A2D9A-5A2D9A?style=flat-square) | 90, 45, 154     |
+| 6    | Cyan           | `#006E6E` | ![#006E6E](https://img.shields.io/badge/%23006E6E-006E6E?style=flat-square) | 0, 110, 110     |
+| 7    | White          | `#3A3530` | ![#3A3530](https://img.shields.io/badge/%233A3530-3A3530?style=flat-square) | 58, 53, 48      |
+| 8    | Bright Black   | `#555050` | ![#555050](https://img.shields.io/badge/%23555050-555050?style=flat-square) | 85, 80, 80      |
+| 9    | Bright Red     | `#E8001A` | ![#E8001A](https://img.shields.io/badge/%23E8001A-E8001A?style=flat-square) | 232, 0, 26      |
+| 10   | Bright Green   | `#2A8A50` | ![#2A8A50](https://img.shields.io/badge/%232A8A50-2A8A50?style=flat-square) | 42, 138, 80     |
+| 11   | Bright Yellow  | `#9A5E00` | ![#9A5E00](https://img.shields.io/badge/%239A5E00-9A5E00?style=flat-square) | 154, 94, 0      |
+| 12   | Bright Blue    | `#1A6ACC` | ![#1A6ACC](https://img.shields.io/badge/%231A6ACC-1A6ACC?style=flat-square) | 26, 106, 204    |
+| 13   | Bright Magenta | `#7A40C0` | ![#7A40C0](https://img.shields.io/badge/%237A40C0-7A40C0?style=flat-square) | 122, 64, 192    |
+| 14   | Bright Cyan    | `#008A8A` | ![#008A8A](https://img.shields.io/badge/%23008A8A-008A8A?style=flat-square) | 0, 138, 138     |
+| 15   | Bright White   | `#6B6560` | ![#6B6560](https://img.shields.io/badge/%236B6560-6B6560?style=flat-square) | 107, 101, 96    |
+
+### Neovim semantic color palette
+
+| Role       | Hex       | Swatch | Usage                                      |
+|------------|-----------|--------|--------------------------------------------|
+| `bg`       | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | Editor background                           |
+| `surface`  | `#FFFFFF` | ![#FFFFFF](https://img.shields.io/badge/%23FFFFFF-FFFFFF?style=flat-square) | Floating windows (no lift in light mode)    |
+| `raised`   | `#E8E4DF` | ![#E8E4DF](https://img.shields.io/badge/%23E8E4DF-E8E4DF?style=flat-square) | Cursor line, popups                         |
+| `border`   | `#F0EDE8` | ![#F0EDE8](https://img.shields.io/badge/%23F0EDE8-F0EDE8?style=flat-square) | Subtle borders                              |
+| `split`    | `#E8E4DF` | ![#E8E4DF](https://img.shields.io/badge/%23E8E4DF-E8E4DF?style=flat-square) | Visual selection, pane dividers             |
+| `disabled` | `#6B6560` | ![#6B6560](https://img.shields.io/badge/%236B6560-6B6560?style=flat-square) | Comments (italic), disabled elements        |
+| `muted`    | `#6B6560` | ![#6B6560](https://img.shields.io/badge/%236B6560-6B6560?style=flat-square) | Operators, punctuation, line numbers        |
+| `fg`       | `#111111` | ![#111111](https://img.shields.io/badge/%23111111-111111?style=flat-square) | Primary text, variables                     |
+| `bright`   | `#000000` | ![#000000](https://img.shields.io/badge/%23000000-000000?style=flat-square) | Bold text, headings, maximum contrast       |
+| `accent`   | `#FF4719` | ![#FF4719](https://img.shields.io/badge/%23FF4719-FF4719?style=flat-square) | Cursor, active indicator                    |
+| `red`      | `#C0000A` | ![#C0000A](https://img.shields.io/badge/%23C0000A-C0000A?style=flat-square) | Keywords, errors, deletions                 |
+| `green`    | `#1E6B3C` | ![#1E6B3C](https://img.shields.io/badge/%231E6B3C-1E6B3C?style=flat-square) | Strings, additions, success                 |
+| `yellow`   | `#7A4A00` | ![#7A4A00](https://img.shields.io/badge/%237A4A00-7A4A00?style=flat-square) | Numbers, warnings, modified                 |
+| `blue`     | `#1050A0` | ![#1050A0](https://img.shields.io/badge/%231050A0-1050A0?style=flat-square) | Functions, links, directories               |
+| `magenta`  | `#5A2D9A` | ![#5A2D9A](https://img.shields.io/badge/%235A2D9A-5A2D9A?style=flat-square) | Types, classes, constants                   |
+| `cyan`     | `#006E6E` | ![#006E6E](https://img.shields.io/badge/%23006E6E-006E6E?style=flat-square) | Imports, namespaces, string escapes         |
 
 ---
 
@@ -193,7 +196,7 @@ Both Nothing variants are available for Ghostty:
 | `nothing-light` | `home/.config/ghostty/themes/nothing-light` |
 | `nothing-dark` | `home/.config/ghostty/themes/nothing-dark` |
 
-Run `make install-ghostty` to install both themes into `~/.config/ghostty/themes/`. Use `PREFIX=/path/to/home` to install into another home-style directory. Both themes set `font-family = "JetBrainsMono Nerd Font Mono"` and `font-size = 16`.
+Run `make install-ghostty` to install both themes into `~/.config/ghostty/themes/`. Use `PREFIX=/path/to/home` to install into another home-style directory. Both themes set `font-family = "SpaceMono Nerd Font Mono"` and `font-size = 24`. Install the font with `brew install --cask font-space-mono-nerd-font`.
 
 Use a single variant:
 

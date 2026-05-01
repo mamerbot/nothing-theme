@@ -54,7 +54,7 @@ for variant in light dark; do
 done
 
 assert_contains "${ROOT_DIR}/home/.config/nvim/colors/nothing-light.lua" 'hl("Normal", { fg = c.fg, bg = c.bg })' "light Normal background"
-assert_contains "${ROOT_DIR}/home/.config/nvim/colors/nothing-dark.lua" 'bg = "#000000"' "dark palette background"
+assert_contains "${ROOT_DIR}/home/.config/nvim/colors/nothing-dark.lua" 'bg = "#090807"' "dark palette background"
 assert_contains "${ROOT_DIR}/home/.config/nvim/colors/nothing-dark.lua" 'hl("Normal", { fg = c.fg, bg = c.bg })' "dark Normal background"
 
 if command -v nvim >/dev/null 2>&1; then

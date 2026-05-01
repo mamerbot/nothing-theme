@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <rect width="1920" height="1080" fill="#090807"/>
+  <line x1="0" y1="480" x2="1920" y2="480" stroke="#E5DDD0" stroke-width="0.4" opacity="0.04"/>
+  <line x1="0" y1="612" x2="1920" y2="612" stroke="#E5DDD0" stroke-width="0.4" opacity="0.04"/>
+  <text font-family="monospace" font-size="48" y="556" text-anchor="middle" x="960">
+    <tspan fill="#5A5248">◆ </tspan><tspan fill="#E5DDD0">nothing</tspan><tspan fill="#5A5248"> → </tspan><tspan fill="#FF4719">█</tspan>
+  </text>
+</svg>
