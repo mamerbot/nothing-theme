@@ -1,0 +1,21 @@
+[delta "nothing-dark"]
+    dark = true
+    navigate = true
+    side-by-side = false
+    line-numbers = true
+    syntax-theme = none
+    plus-style = syntax "#000000" "#4A9E5C"
+    minus-style = syntax "#000000" "#D71921"
+    zero-style = syntax "#000000" "#E8E8E8"
+    plus-emph-style = syntax "#111111" "#4A9E5C"
+    minus-emph-style = syntax "#111111" "#D71921"
+    line-numbers-left-style = "#666666"
+    line-numbers-right-style = "#666666"
+    line-numbers-plus-style = "#4A9E5C"
+    line-numbers-minus-style = "#D71921"
+    file-style = "#5B9BF6" bold
+    hunk-header-style = "#9B6FBF" bold
+    hunk-header-decoration-style = "#333333"
+    blame-code-style = syntax "#000000" "#E8E8E8"
+    blame-format-style = "#999999"
+    hyperlinks = true

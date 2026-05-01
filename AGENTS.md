@@ -169,16 +169,116 @@ These rules apply to both variants (swap colors for light vs dark per the tables
 
 ---
 
-## Implementations in this repo
+## iTerm2
 
-| App            | File(s)                                                                 | Active variant  |
-|----------------|-------------------------------------------------------------------------|-----------------|
-| Ghostty        | `home/.config/ghostty/themes/nothing-{dark,light}`                     | `nothing-light` |
-| Neovim         | `home/.config/nvim/colors/nothing.lua`                                  | `light`         |
-| bat            | `home/.config/bat/themes/nothing-{dark,light}.tmTheme`                  | `nothing-light` |
-| eza            | `home/.config/eza/{dark,light}/theme.yml`                               | `light/`        |
-| tmux-powerline | `home/.config/tmux-powerline/themes/nothing-{dark,light}.sh`            | `nothing-light` |
-| Starship       | `home/.config/starship.toml`                                            | `nothing_light` |
-| Lazygit        | `home/.config/lazygit/config.yml`                                       | light           |
-| FZF            | `home/.zshrc` (`FZF_DEFAULT_OPTS`)                                      | light           |
-| iTerm2         | `home/.config/iterm2/{colors,DynamicProfiles}/nothing-{dark,light}.*`  | both profiles   |
+Both Nothing variants are available for iTerm2:
+
+| Variant | Color preset | Dynamic Profile |
+|---------|--------------|-----------------|
+| `nothing-light` | `home/.config/iterm2/colors/nothing-light.itermcolors` | `home/.config/iterm2/DynamicProfiles/nothing-light.json` |
+| `nothing-dark` | `home/.config/iterm2/colors/nothing-dark.itermcolors` | `home/.config/iterm2/DynamicProfiles/nothing-dark.json` |
+
+Import the `.itermcolors` files as iTerm2 color presets, or install the Dynamic Profile JSON files to `~/Library/Application Support/iTerm2/DynamicProfiles/` to load the named `Nothing Light` and `Nothing Dark` profiles.
+
+Run `make install-iterm2` to install both Dynamic Profiles into iTerm2's watched directory and copy the color preset files into `~/.config/iterm2/colors/` for manual import. Use `PREFIX=/path/to/home` to install into another home-style directory.
+
+---
+
+## Ghostty
+
+Both Nothing variants are available for Ghostty:
+
+| Variant | Theme file |
+|---------|------------|
+| `nothing-light` | `home/.config/ghostty/themes/nothing-light` |
+| `nothing-dark` | `home/.config/ghostty/themes/nothing-dark` |
+
+Run `make install-ghostty` to install both themes into `~/.config/ghostty/themes/`. Use `PREFIX=/path/to/home` to install into another home-style directory. Both themes set `font-family = "JetBrainsMono Nerd Font Mono"` and `font-size = 16`.
+
+Use a single variant:
+
+```text
+theme = nothing-light
+```
+
+```text
+theme = nothing-dark
+```
+
+Or switch with the system appearance:
+
+```text
+theme = light:nothing-light,dark:nothing-dark
+```
+
+---
+
+## CLI app themes
+
+Bare `make` runs validation only. Run `make install` or `make deploy` to copy all managed iTerm2, Ghostty, tmux, Neovim, eza, delta, and lazygit theme artifacts. App-specific targets are also available:
+
+| App | Install target | Light file | Dark file |
+|-----|----------------|------------|-----------|
+| tmux | `make install-tmux` | `home/.config/tmux/themes/nothing-light.conf` | `home/.config/tmux/themes/nothing-dark.conf` |
+| Neovim | `make install-nvim` | `home/.config/nvim/colors/nothing-light.lua` | `home/.config/nvim/colors/nothing-dark.lua` |
+| eza | `make install-eza` | `home/.config/eza/themes/nothing-light.yml` | `home/.config/eza/themes/nothing-dark.yml` |
+| delta | `make install-delta` | `home/.config/delta/themes/nothing-light.gitconfig` | `home/.config/delta/themes/nothing-dark.gitconfig` |
+| lazygit | `make install-lazygit` | `home/.config/lazygit/themes/nothing-light.yml` | `home/.config/lazygit/themes/nothing-dark.yml` |
+
+### tmux
+
+Install both variants into `~/.config/tmux/themes/`, then source the preferred variant from `~/.tmux.conf`:
+
+```tmux
+source-file ~/.config/tmux/themes/nothing-light.conf
+```
+
+```tmux
+source-file ~/.config/tmux/themes/nothing-dark.conf
+```
+
+### Neovim
+
+Install both colorschemes into `~/.config/nvim/colors/`, then select one explicitly:
+
+```vim
+colorscheme nothing-light
+```
+
+```vim
+colorscheme nothing-dark
+```
+
+### eza
+
+Install both YAML themes into `~/.config/eza/themes/`. eza loads `~/.config/eza/theme.yml`, so activate a variant by copying or symlinking the preferred file:
+
+```sh
+ln -sf ~/.config/eza/themes/nothing-light.yml ~/.config/eza/theme.yml
+```
+
+```sh
+ln -sf ~/.config/eza/themes/nothing-dark.yml ~/.config/eza/theme.yml
+```
+
+### delta
+
+Install both snippets into `~/.config/delta/themes/`, then include the preferred snippet from Git config and select its feature:
+
+```gitconfig
+[include]
+    path = ~/.config/delta/themes/nothing-light.gitconfig
+[delta]
+    features = nothing-light
+```
+
+```gitconfig
+[include]
+    path = ~/.config/delta/themes/nothing-dark.gitconfig
+[delta]
+    features = nothing-dark
+```
+
+### lazygit
+
+Install both snippets into `~/.config/lazygit/themes/`. Lazygit does not have a dedicated theme search path, so merge the preferred snippet into `~/.config/lazygit/config.yml` or copy its `gui.theme` block into the active config.

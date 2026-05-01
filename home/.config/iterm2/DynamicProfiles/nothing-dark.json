@@ -1,0 +1,33 @@
+{
+  "Profiles": [
+    {
+      "Name": "Nothing Dark",
+      "Guid": "9E60CD40-829B-4DC6-8FB8-051E95498C2C",
+      "Dynamic Profile Parent Name": "Default",
+      "Normal Font": "JetBrainsMonoNFM-Regular 16",
+      "Non Ascii Font": "JetBrainsMonoNFM-Regular 16",
+      "Ansi 0 Color": { "Alpha Component": 1, "Blue Component": 0, "Color Space": "sRGB", "Green Component": 0, "Red Component": 0 },
+      "Ansi 1 Color": { "Alpha Component": 1, "Blue Component": 0.1294117647, "Color Space": "sRGB", "Green Component": 0.0980392157, "Red Component": 0.8431372549 },
+      "Ansi 2 Color": { "Alpha Component": 1, "Blue Component": 0.3607843137, "Color Space": "sRGB", "Green Component": 0.6196078431, "Red Component": 0.2901960784 },
+      "Ansi 3 Color": { "Alpha Component": 1, "Blue Component": 0.262745098, "Color Space": "sRGB", "Green Component": 0.6588235294, "Red Component": 0.831372549 },
+      "Ansi 4 Color": { "Alpha Component": 1, "Blue Component": 0.9647058824, "Color Space": "sRGB", "Green Component": 0.6078431373, "Red Component": 0.3568627451 },
+      "Ansi 5 Color": { "Alpha Component": 1, "Blue Component": 0.7490196078, "Color Space": "sRGB", "Green Component": 0.4352941176, "Red Component": 0.6078431373 },
+      "Ansi 6 Color": { "Alpha Component": 1, "Blue Component": 0.768627451, "Color Space": "sRGB", "Green Component": 0.6196078431, "Red Component": 0.2901960784 },
+      "Ansi 7 Color": { "Alpha Component": 1, "Blue Component": 0.6, "Color Space": "sRGB", "Green Component": 0.6, "Red Component": 0.6 },
+      "Ansi 8 Color": { "Alpha Component": 1, "Blue Component": 0.2, "Color Space": "sRGB", "Green Component": 0.2, "Red Component": 0.2 },
+      "Ansi 9 Color": { "Alpha Component": 1, "Blue Component": 0.1294117647, "Color Space": "sRGB", "Green Component": 0.0980392157, "Red Component": 0.8431372549 },
+      "Ansi 10 Color": { "Alpha Component": 1, "Blue Component": 0.3607843137, "Color Space": "sRGB", "Green Component": 0.6196078431, "Red Component": 0.2901960784 },
+      "Ansi 11 Color": { "Alpha Component": 1, "Blue Component": 0.262745098, "Color Space": "sRGB", "Green Component": 0.6588235294, "Red Component": 0.831372549 },
+      "Ansi 12 Color": { "Alpha Component": 1, "Blue Component": 0.9647058824, "Color Space": "sRGB", "Green Component": 0.6078431373, "Red Component": 0.3568627451 },
+      "Ansi 13 Color": { "Alpha Component": 1, "Blue Component": 0.7490196078, "Color Space": "sRGB", "Green Component": 0.4352941176, "Red Component": 0.6078431373 },
+      "Ansi 14 Color": { "Alpha Component": 1, "Blue Component": 0.768627451, "Color Space": "sRGB", "Green Component": 0.6196078431, "Red Component": 0.2901960784 },
+      "Ansi 15 Color": { "Alpha Component": 1, "Blue Component": 1, "Color Space": "sRGB", "Green Component": 1, "Red Component": 1 },
+      "Background Color": { "Alpha Component": 1, "Blue Component": 0, "Color Space": "sRGB", "Green Component": 0, "Red Component": 0 },
+      "Foreground Color": { "Alpha Component": 1, "Blue Component": 0.9098039216, "Color Space": "sRGB", "Green Component": 0.9098039216, "Red Component": 0.9098039216 },
+      "Cursor Color": { "Alpha Component": 1, "Blue Component": 1, "Color Space": "sRGB", "Green Component": 1, "Red Component": 1 },
+      "Cursor Text Color": { "Alpha Component": 1, "Blue Component": 0, "Color Space": "sRGB", "Green Component": 0, "Red Component": 0 },
+      "Selection Color": { "Alpha Component": 1, "Blue Component": 0.2, "Color Space": "sRGB", "Green Component": 0.2, "Red Component": 0.2 },
+      "Selected Text Color": { "Alpha Component": 1, "Blue Component": 0.9098039216, "Color Space": "sRGB", "Green Component": 0.9098039216, "Red Component": 0.9098039216 }
+    }
+  ]
+}
