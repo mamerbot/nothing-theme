@@ -9,6 +9,12 @@ The repo ships two theme variants:
 
 The shared accent is `#FF4719`. It is reserved for high-signal UI states such as cursors, active pane borders, and active window indicators.
 
+## Preview
+
+| Nothing Light | Nothing Dark |
+| --- | --- |
+| [![Nothing Light simulated terminal screenshot](assets/nothing-light-terminal.png)](assets/nothing-light-terminal.png) | [![Nothing Dark simulated terminal screenshot](assets/nothing-dark-terminal.png)](assets/nothing-dark-terminal.png) |
+
 ## Included Targets
 
 | App | Light file | Dark file |
