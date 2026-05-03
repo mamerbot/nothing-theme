@@ -1,6 +1,13 @@
+ifeq ($(OS),Windows_NT)
+SHELL := cmd.exe
+.SHELLFLAGS := /C
+PREFIX ?= $(USERPROFILE)
+POWERSHELL ?= powershell
+else
 SHELL := /bin/bash
-
 PREFIX ?= $(HOME)
+endif
+
 ITERM2_CONFIG_DIR ?= $(PREFIX)/.config/iterm2
 ITERM2_COLOR_DIR ?= $(ITERM2_CONFIG_DIR)/colors
 ITERM2_DYNAMIC_PROFILES_DIR ?= $(PREFIX)/Library/Application Support/iTerm2/DynamicProfiles
@@ -43,9 +50,64 @@ LAZYGIT_THEMES := \
 	home/.config/lazygit/themes/nothing-light.yml \
 	home/.config/lazygit/themes/nothing-dark.yml
 
-.PHONY: all validate install deploy install-iterm2 deploy-iterm2 install-ghostty deploy-ghostty install-tmux deploy-tmux install-nvim deploy-nvim install-eza deploy-eza install-delta deploy-delta install-lazygit deploy-lazygit
+.PHONY: all validate install deploy deploy-light install-iterm2 deploy-iterm2 install-ghostty deploy-ghostty install-tmux deploy-tmux install-nvim deploy-nvim install-eza deploy-eza install-delta deploy-delta install-lazygit deploy-lazygit install-wallpapers deploy-wallpapers
 
 all: validate
+
+ifeq ($(OS),Windows_NT)
+
+validate:
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File tests\validate-theme.ps1
+
+install: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets iterm2,ghostty,tmux,nvim,eza,delta,lazygit
+
+deploy: install
+
+deploy-light: install
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\deploy-windows-light.ps1 -Prefix "$(PREFIX)"
+
+install-iterm2: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets iterm2
+
+deploy-iterm2: install-iterm2
+
+install-ghostty: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets ghostty
+
+deploy-ghostty: install-ghostty
+
+install-tmux: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets tmux
+
+deploy-tmux: install-tmux
+
+install-nvim: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets nvim
+
+deploy-nvim: install-nvim
+
+install-eza: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets eza
+
+deploy-eza: install-eza
+
+install-delta: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets delta
+
+deploy-delta: install-delta
+
+install-lazygit: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets lazygit
+
+deploy-lazygit: install-lazygit
+
+install-wallpapers: validate
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\deploy-windows-light.ps1 -Prefix "$(PREFIX)" -InstallOnly
+
+deploy-wallpapers: deploy-light
+
+else
 
 validate:
 	@tests/validate-iterm2-theme.sh
@@ -111,3 +173,5 @@ install-lazygit: validate
 	@echo "Installed lazygit themes to $(LAZYGIT_THEME_DIR)"
 
 deploy-lazygit: install-lazygit
+
+endif
