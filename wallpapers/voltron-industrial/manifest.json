@@ -1,0 +1,42 @@
+{
+  "family": "voltron-industrial",
+  "default_vibe": "aperture",
+  "variants": ["dark", "light"],
+  "vibes": {
+    "aperture": {
+      "label": "Aperture",
+      "dark": "wallpapers/voltron-industrial/aperture/dark.png",
+      "light": "wallpapers/voltron-industrial/aperture/light.png",
+      "dark_thumb": "wallpapers/voltron-industrial/aperture/dark-thumb.jpg",
+      "light_thumb": "wallpapers/voltron-industrial/aperture/light-thumb.jpg"
+    },
+    "containment-frame": {
+      "label": "Containment Frame",
+      "dark": "wallpapers/voltron-industrial/containment-frame/dark.png",
+      "light": "wallpapers/voltron-industrial/containment-frame/light.png",
+      "dark_thumb": "wallpapers/voltron-industrial/containment-frame/dark-thumb.jpg",
+      "light_thumb": "wallpapers/voltron-industrial/containment-frame/light-thumb.jpg"
+    },
+    "gantry": {
+      "label": "Gantry",
+      "dark": "wallpapers/voltron-industrial/gantry/dark.png",
+      "light": "wallpapers/voltron-industrial/gantry/light.png",
+      "dark_thumb": "wallpapers/voltron-industrial/gantry/dark-thumb.jpg",
+      "light_thumb": "wallpapers/voltron-industrial/gantry/light-thumb.jpg"
+    },
+    "horizontal-trench": {
+      "label": "Horizontal Trench",
+      "dark": "wallpapers/voltron-industrial/horizontal-trench/dark.png",
+      "light": "wallpapers/voltron-industrial/horizontal-trench/light.png",
+      "dark_thumb": "wallpapers/voltron-industrial/horizontal-trench/dark-thumb.jpg",
+      "light_thumb": "wallpapers/voltron-industrial/horizontal-trench/light-thumb.jpg"
+    },
+    "diagonal-corridor": {
+      "label": "Diagonal Corridor",
+      "dark": "wallpapers/voltron-industrial/diagonal-corridor/dark.png",
+      "light": "wallpapers/voltron-industrial/diagonal-corridor/light.png",
+      "dark_thumb": "wallpapers/voltron-industrial/diagonal-corridor/dark-thumb.jpg",
+      "light_thumb": "wallpapers/voltron-industrial/diagonal-corridor/light-thumb.jpg"
+    }
+  }
+}

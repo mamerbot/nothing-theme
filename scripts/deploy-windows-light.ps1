@@ -10,7 +10,7 @@ if ([string]::IsNullOrWhiteSpace($Prefix)) {
   $Prefix = if ($env:USERPROFILE) { $env:USERPROFILE } else { $env:HOME }
 }
 
-$wallpaperSource = Join-Path $RepoRoot "wallpapers/nothing-light-figureground.png"
+$wallpaperSource = Join-Path $RepoRoot "wallpapers/voltron-industrial/aperture/light.png"
 if (-not (Test-Path -LiteralPath $wallpaperSource)) {
   throw "Missing light wallpaper: $wallpaperSource"
 }
@@ -21,7 +21,7 @@ if ([string]::IsNullOrWhiteSpace($picturesDir)) {
 }
 
 $wallpaperDir = Join-Path $picturesDir "Nothing Theme"
-$wallpaperPath = Join-Path $wallpaperDir "nothing-light-figureground.png"
+$wallpaperPath = Join-Path $wallpaperDir "nothing-voltron-industrial-aperture-light.png"
 
 New-Item -ItemType Directory -Force -Path $wallpaperDir | Out-Null
 Copy-Item -LiteralPath $wallpaperSource -Destination $wallpaperPath -Force

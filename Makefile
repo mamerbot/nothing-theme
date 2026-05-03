@@ -61,6 +61,7 @@ validate:
 
 install: validate
 	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\install-theme.ps1 -Prefix "$(PREFIX)" -Targets iterm2,ghostty,tmux,nvim,eza,delta,lazygit
+	@$(POWERSHELL) -NoProfile -ExecutionPolicy Bypass -File scripts\deploy-windows-light.ps1 -Prefix "$(PREFIX)"
 
 deploy: install
 
